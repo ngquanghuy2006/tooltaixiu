@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Free Fire by Quang Huy</title>
+    <style>
+        @keyframes rainbow {
+            0% { color: red; }
+            14% { color: orange; }
+            28% { color: yellow; }
+            42% { color: green; }
+            57% { color: blue; }
+            71% { color: indigo; }
+            85% { color: violet; }
+            100% { color: red; }
+        }
+        @keyframes fall {
+            0% { transform: translateY(-50px); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+        body {
+            background-image: url('https://i.imgur.com/9ybHqjH.jpeg');
+            background-size: cover;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        .login-container {
+            margin-top: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            animation: rainbow 3s infinite;
+        }
+        input {
+            display: block;
+            margin: 10px;
+            padding: 10px;
+            width: 250px;
+            text-align: center;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background: #ff4500;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #ff6347;
+        }
+        .flame-effect {
+            position: fixed;
+            animation: fall 5s linear infinite;
+            font-size: 24px;
+        }
+        /* Ẩn panel regedit ban đầu */
+        .panel {
+            display: none;
+            margin-top: 50px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            width: 300px;
+            margin: auto;
+        }
+
+        .panel-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .toggle-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #444;
+        }
+
+        .toggle-label {
+            font-size: 16px;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #888;
+            transition: 0.4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #4CAF50;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .action-btn {
+            background: #4CAF50;
+            border: none;
+            padding: 10px 15px;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 48%;
+        }
+
+        .action-btn.logout {
+            background: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <!-- FORM ĐĂNG NHẬP -->
+    <div class="login-container" id="login-container">
+        <h1 class="title">PANEL FREE FIRE BY Quang Huy</h1>
+        <img src="https://i.imgur.com/iA8VuqJ.jpeg" width="200" height="200">
+        <input type="text" id="username" placeholder="Tài khoản 📱">
+        <input type="password" id="password" placeholder="Key Tool 🔑">
+        <div class="button-container">
+            <button onclick="login()">Đăng nhập</button>
+            <button onclick="resetForm()">Hủy</button>
+        </div>
+        <p id="error-message"></p>
+    </div>
+
+    <!-- PANEL REGEDIT -->
+    <div class="panel" id="panel">
+        <h2 class="panel-title">🎯 Regedit Settings</h2>
+
+        <div class="toggle-container">
+            <label class="toggle-label">Aim Bot 🔥</label>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </div>
+
+        <div class="toggle-container">
+            <label class="toggle-label">Aim Lock 💥</label>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </div>
+
+        <div class="toggle-container">
+            <label class="toggle-label">Auto Full Đỏ 💯</label>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </div>
+
+        <div class="toggle-container">
+            <label class="toggle-label">Sensi Vip 📱</label>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        
+        <div class="toggle-container">
+            <label class="toggle-label">Aim Pro 🚀</label>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        
+        <div class="toggle-container">
+            <label class="toggle-label">Buff Màn 60Hz 🔰</label>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        
+        <div class="toggle-container">
+            <label class="toggle-label">Buff Màn 120Hz 🌀</label>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        
+        <div class="toggle-container">
+            <label class="toggle-label">Ump Trick 🌪️</label>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </div>
+
+        <h2 class="panel-title">🛡️ Antiband Settings</h2>
+        <div class="toggle-container">
+            <label class="toggle-label">Antiband VIP 👑</label>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </div>
+
+        <div class="toggle-container">
+            <label class="toggle-label">Bypass Antiband ✅</label>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        
+        <div class="toggle-container">
+            <label class="toggle-label">Tường Lửa Vip 🔒</label>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        
+        
+        <div class="toggle-container">
+            <label class="toggle-label">Antiband By Ng Quang Huy</label>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </div>
+
+        <div class="button-group">
+            <button class="action-btn" onclick="activate()">✅ Kích Hoạt</button>
+            <button class="action-btn logout" onclick="logout()">❌ Kết Thúc</button>
+        </div>
+    </div>
+
+    <script>
+        function login() {
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+            if (user === '2006' && pass === '2006') {
+                alert('Đăng nhập thành công!');
+                document.getElementById('login-container').style.display = 'none';
+                document.getElementById('panel').style.display = 'block';
+                createFlames();
+            } else {
+                document.getElementById('error-message').innerText = 'Sai tài khoản hoặc mật khẩu!';
+                document.getElementById('error-message').style.color = 'red';
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+        }
+
+        function activate() {
+            alert("Đã kích hoạt regedit thành công!");
+        }
+
+        function logout() {
+            document.getElementById('panel').style.display = 'none';
+            document.getElementById('login-container').style.display = 'flex';
+        }
+
+        function createFlames() {
+            for (let i = 0; i < 5; i++) {
+                let flame = document.createElement('div');
+                flame.className = 'flame-effect';
+                flame.innerHTML = '🔥';
+                flame.style.left = Math.random() * window.innerWidth + 'px';
+                flame.style.animationDuration = Math.random() * 5 + 3 + 's';
+                document.body.appendChild(flame);
+                setTimeout(() => flame.remove(), 5000);
+            }
+        }
+        setInterval(createFlames, 1500);
+    </script>
+</body>
+</html>
